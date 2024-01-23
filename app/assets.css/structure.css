@@ -19,6 +19,14 @@ html, body{
     font-size: 1em;
 }
 
+body {
+    background: radial-gradient(var(--white), #f1f1f1);
+}
+
+main{
+    text-align: center;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -42,14 +50,16 @@ ul, ol {
     padding: 0.5em 1em;
     border-radius: var(--border-radius);
     transition: .4s ease;
+    border: none;
+    cursor: pointer;
 }
 
 
-.btn-prymary {
+.btn-primary {
     background: var(--primary);
 }
 
-.btn-prymary:hover {
+.btn-primary:hover {
     background: #0c7c58;
 }
 
@@ -61,6 +71,7 @@ ul, ol {
     background: #7b6017;
 }
 
+
 .alert {
     border-radius: var(var(--border-radius));
     padding: 1em;
@@ -69,10 +80,19 @@ ul, ol {
     margin:1em auto;
 }
 
-.alert-danger {
+.alert-danger,
+.btn-danger {
     background-color: rgba(198, 29, 29, 0.8);
     border: 1px solid rgb(198, 29, 29);
     color: var(--white);
+}
+
+.mt-2 {
+    margin-top: 1em;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /*************************************** NAVBAR ********************************************/
@@ -84,7 +104,7 @@ ul, ol {
     padding: 1em;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1em;
 }
 
 .navbar-link {
@@ -92,4 +112,48 @@ ul, ol {
     gap: 1em;
     align-items: center;
 
+}
+
+.navbar-btn {
+    margin-left:auto;
+}
+
+
+/************************************************* FROM *************************************************/
+.form {
+    border-radius: var(--border-radius);
+    background: var(--white);
+    border: 1px solid var(--primary);
+    padding: 1em 5em;
+    margin: 1em auto 0;
+    width: max-content;
+    max-width: 100%;
+    box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
+}
+
+.group-input {
+    margin-bottom: 1em;
+}
+
+form label {
+    display: block;
+    margin-bottom: .5em;
+}
+
+input, 
+textarea {
+    border: 1px solid var(--secondary);
+    padding: 0.5em 1em;
+    border-radius: var(--border-radius);
+    margin-bottom: 1em;
+}
+
+input:focus, 
+textarea:focus {
+    border: 1px solid var(--primary);
+}
+
+form button {
+    display: block;
+    margin: auto;
 }
