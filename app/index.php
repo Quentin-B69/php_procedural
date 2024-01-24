@@ -4,8 +4,10 @@ session_start();
 
 
 
-require_once '/app/env/variable.php'
+require_once '/app/env/variable.php';
+require_once '/app/request/users.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,7 +17,9 @@ require_once '/app/env/variable.php'
     <link rel="stylesheet" href="<?= $cssPath; ?>structure.css">
     <link rel="stylesheet" href="<?= $cssPath; ?>index.css">
 </head>
+
 <body>
+    <?php var_dump(findAllUsers()); ?>
     <?php require_once './layout/header.php'; ?>
     <main> 
         <h1>Hello World</h1>
