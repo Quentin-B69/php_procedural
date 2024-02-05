@@ -2,31 +2,35 @@
 
 session_start();
 
-
 require_once '/app/env/variable.php';
+require_once '/app/request/users.php';
 
-$users = [
-    [
-        'email' => 'pierre@test.com',
-        'password' => 'test1234!',
-    ]
-];
 //on verifie que les données ne sont pas vide 0
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    foreach ($users as $user)
-        if (
-            in_array($_POST['email'], $user) &&
-            $_POST['password'] === $user['password']
-        ) {
+    // on essaie de récupéré l'utilisateur en BDD
+    $user = findOneUserByEmail($_POST['email']);
+
+    if ($user) {
+        //Utilisateur en BDD
+        if (password_verify($_POST['password'], $user['password'])){
+            //on connecte l'utilisateur 
             $_SESSION['LOGGED_USER'] = [
-                'email' => $user ['email'],
+                'firstName' => $user['firstName'],
+                'laseName' => $user['lastName'],
+                'email' => $user['email'],
+                'roles' => json_decode( $user['roles'] ?: '[]'),
             ];
 
+            //on redirige sur la page d'accueil
             http_response_code(302);
             header("Location: /");
             exit();
-
+        } else {
+            $errorMessage = "Identifiants invalide";
         }
+    } else {
+        $errorMessage = "Identifiants invalide";
+    }
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorMessage = "veuillez renseignez les champs obligatoire ";
 }
@@ -46,6 +50,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
 <body>
     <?php require_once '/app/layout/header.php'; ?>
     <main>
+        <?php require_once '/app/layout/messages.php';?>
         <section class="container mt-2">
             <h1 class="text-center mt-2">Connexion</h1>
             <form action="/login.php" class="form" method="POST">
