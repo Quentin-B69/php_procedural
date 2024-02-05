@@ -93,3 +93,26 @@ function updateUser(int $id, string $firstName, string $lastName , string $email
 
     return true;
 }
+
+/**
+ * Function to delete a user from DB 
+ * 
+ * @param integer $id
+ * @return boolean
+ */
+
+function deleteUser(int $id):bool
+{
+    global $db;
+
+    try{
+            $sqlStatement = $db->prepare("DELETE from users where id = :id");
+            $sqlStatement -> execute([
+                'id' => $id,
+            ]);
+    }   catch(PDOException $error) {
+        return false;
+    }
+
+    return true;
+}
