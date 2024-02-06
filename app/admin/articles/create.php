@@ -36,7 +36,7 @@ if (
             $_SESSION['message']['success'] = "article crée avec succées";
 
             http_response_code(302);
-            header('Location: /Admin/articles');
+            header('Location: /admin/articles');
             exit();
         } else {
             $errorMessage = 'Une erreur est survenue';

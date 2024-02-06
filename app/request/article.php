@@ -13,6 +13,18 @@ function findAllArticles():array
 }
 
 /**
+ * Undocumented function
+ *
+ * @param string $date
+ * @param string $format
+ * @return string
+ */
+function convertDateArticle(string $date, string $format): string
+{
+    return (new DateTime($date))->format($format);
+}
+
+/**
  * function to find One article by title
  *
  * @param string $title
