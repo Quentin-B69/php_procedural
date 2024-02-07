@@ -50,6 +50,7 @@ $_SESSION['token'] = bin2hex(random_bytes(50));
 
                         <h2 class="card-header"><?= $categorie['nom']; ?></h2>
 
+
                         <div class="card-btn">
                             <a href="/admin/categories/update.php?id=<?= $categorie['id']; ?>" class="btn btn-primary">Editer</a>
                             <form action="/admin/categories/delete.php" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette categorie ?')">

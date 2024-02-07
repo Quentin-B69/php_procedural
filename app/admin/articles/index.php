@@ -40,6 +40,7 @@ $_SESSION['token'] = bin2hex(random_bytes(50));
             <a href="/admin/articles/create.php" class="btn btn-primary ">Créer un article</a>
             <div class="card-list mt-2">
                 <?php foreach (findAllArticlesWithAutor() as $article) : ?>
+
                     <div class="card">
                         <?php if($article['imageName']):?>
                             <img src="/uploads/articles/<?= $article['imageName']; ?>" alt="" loading="lazy">
@@ -48,6 +49,7 @@ $_SESSION['token'] = bin2hex(random_bytes(50));
                         <em><strong>Date:</strong> <?= convertDateArticle($article['createdAt'], 'd/m/Y'); ?></em>
                         <p><strong>Description:</strong> <?= substr($article['description'], 0, 150). '...'; ?></p>
                         <em><strong>Auteur:</strong> <?= "$article[firstName] $article[lastName]"; ?> </em>
+                        <p><em><strong>Categorie:</strong> <?= "$article[nom] "; ?> </em></p>
                         <div class="card-btn">
                             <a href="/admin/articles/update.php?id=<?= $article['id']; ?>" class="btn btn-primary">Editer</a>
                             <form action="/admin/articles/delete.php" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette article ?')">

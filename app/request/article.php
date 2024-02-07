@@ -16,13 +16,15 @@ function findAllArticlesWithAutor(): array
 {
     global $db;
 
-    $query = "SELECT a.id, a.title, a.description, a.createdAt, a.enable , a.imageName, u.firstName, u.lastName FROM articles a JOIN users u ON a.auteurId = u.id";
+    $query = "SELECT a.id, a.title, a.description, a.createdAt, a.enable , a.imageName, u.firstName, u.lastName, c.nom FROM articles a JOIN users u ON a.auteurId = u.id LEFT JOIN categories c ON a.categoriesId = c.id";
 
     $sqlStatement = $db->prepare($query);
     $sqlStatement->execute();
 
     return $sqlStatement->fetchAll();
 }
+
+
 
 
 /**
