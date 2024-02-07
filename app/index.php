@@ -19,7 +19,7 @@ require_once '/app/request/users.php';
 </head>
 
 <body>
-    <?php var_dump(findAllUsers()); ?>
+
     <?php require_once './layout/header.php'; ?>
     <main> 
         <h1>Hello World</h1>
@@ -35,7 +35,7 @@ require_once '/app/request/users.php';
                 <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 
-<?php var_dump($_POST); ?>
+
     </main>
 </body>
 </html>

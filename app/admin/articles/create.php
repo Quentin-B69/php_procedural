@@ -28,7 +28,7 @@ if (
     // on nettoie nos données 
     $title = strip_tags($_POST['title']);
     $description = strip_tags($_POST['description']);
-    $enable = isset($_POST['enable']) ? true : false;
+    $enable = isset($_POST['enable']) ? 1 : 0;
 
     // verifier si le titre n'existe pas
     if (!findOneArticleByTitle($title)) {

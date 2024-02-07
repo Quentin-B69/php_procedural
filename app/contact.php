@@ -43,7 +43,6 @@ if (!empty($_FILES['image']) && $_FILES['image']['error'] === 0) {
     <?php require_once '/app/Layout/header.php'; ?>
     <main>
         <h1>Votre demande de contact </h1>
-        <?php var_dump($_FILES); ?>
         <?php if (!empty($_POST['prenom']) && !empty($_POST['nom']) && !empty($_POST['message'])) : ?>
             <div class="card">
                 <p>prenom <?= strip_tags($_POST['prenom']); ?></p>
