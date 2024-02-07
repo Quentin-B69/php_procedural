@@ -24,6 +24,7 @@ if (
     !empty($_POST['title']) &&
     !empty($_POST['description'])
 ) {
+
     // on nettoie nos données 
     $title = strip_tags($_POST['title']);
     $description = strip_tags($_POST['description']);
@@ -31,8 +32,12 @@ if (
 
     // verifier si le titre n'existe pas
     if (!findOneArticleByTitle($title)) {
+        if ($_FILES['image']['size'] > 0 && $_FILES['image']['error'] === 0) {
+            $imageName = uploadArticleImage($_FILES['image']);
+        }
+
         // on envoie les données en DB 
-        if (createArticle($title, $description, $enable)) {
+        if (createArticle($title, $description, $enable, $_SESSION['LOGGED_USER']['id'], isset($imageName) ? $imageName : null)) {
             $_SESSION['message']['success'] = "article crée avec succées";
 
             http_response_code(302);
@@ -66,7 +71,7 @@ if (
         <?php require_once '/app/layout/messages.php'; ?>
         <section class="container mt-2">
             <h1 class="text-center">Création d'un article</h1>
-            <form action="<?= $_SERVER['PHP_SELF']; ?>" class="form" method="post">
+            <form action="<?= $_SERVER['PHP_SELF']; ?>" class="form mt-2" method="post" enctype="multipart/form-data">
                 <?php if (isset($errorMessage)) : ?>
                     <div class="alert alert-danger">
                         <?= $errorMessage; ?>
@@ -81,6 +86,10 @@ if (
                     <textarea name="description" id="description" row="10" placeholder="contenu de l'article" require></textarea>
                 </div>
                 <div class="group-input">
+                    <label for="image">Image:</label>
+                    <input type="file" name="image" id="image">
+                </div>
+                <div class="group-input checkbox">
                     <input type="checkbox" name="enable" id="enable">
                     <label for="enable">Actif</label>
                 </div>

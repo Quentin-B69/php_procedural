@@ -20,7 +20,7 @@ $user = findOneUserById(!empty($_POST['id']) ? $_POST['id'] : 0);
 if ($user){
     if (hash_equals($_SESSION['token'], $_POST['token'])) {
         if (deleteUser($user['id'])) {
-            $_SESSION['messages']['success'] = "User supprimé avec siccés ";
+            $_SESSION['messages']['success'] = "User supprimé avec succés ";
         } else {
             $_SESSION['messages']['error'] = " Une erreur est survenue, veuillez réessayer";
         }

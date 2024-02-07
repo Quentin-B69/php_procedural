@@ -36,7 +36,7 @@ function findOneUserByEmail(string $email): bool|array
 {
     global $db;
 
-    $sqlStatement = $db->prepare("SELECT firstName, lastName, email, password, roles FROM users WHERE email = :email");
+    $sqlStatement = $db->prepare("SELECT id, firstName, lastName, email, password, roles FROM users WHERE email = :email");
     $sqlStatement->execute([
         'email' => $email,
     ]);

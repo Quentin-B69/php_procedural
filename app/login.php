@@ -15,6 +15,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         if (password_verify($_POST['password'], $user['password'])){
             //on connecte l'utilisateur 
             $_SESSION['LOGGED_USER'] = [
+                'id' => $user['id'],
                 'firstName' => $user['firstName'],
                 'laseName' => $user['lastName'],
                 'email' => $user['email'],
